@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface BlogPostData {
   url: string;
@@ -15,11 +15,32 @@ interface BlogPostData {
   }>;
 }
 
+interface LightboxState {
+  isOpen: boolean;
+  currentImageIndex: number;
+  postIndex: number;
+}
+
 export default function Home() {
   const [posts, setPosts] = useState<BlogPostData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [lightbox, setLightbox] = useState<LightboxState>({
+    isOpen: false,
+    currentImageIndex: 0,
+    postIndex: 0,
+  });
+  const [shareSuccess, setShareSuccess] = useState<string | null>(null);
+  const postRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+
+  // Create slug from post title for URL
+  const createSlug = (title: string): string => {
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+  };
 
   useEffect(() => {
     fetch('/blog_posts.json')
@@ -40,6 +61,27 @@ export default function Home() {
         setLoading(false);
       });
   }, []);
+
+  // Handle deep linking - scroll to post from URL hash
+  useEffect(() => {
+    if (posts.length === 0) return;
+
+    const hash = window.location.hash.slice(1); // Remove the # character
+    if (hash) {
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        const element = postRefs.current[hash];
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Add a subtle highlight effect
+          element.style.backgroundColor = 'rgba(59, 130, 246, 0.05)';
+          setTimeout(() => {
+            element.style.backgroundColor = '';
+          }, 2000);
+        }
+      }, 100);
+    }
+  }, [posts]);
 
   useEffect(() => {
     const handleScroll = () => {
