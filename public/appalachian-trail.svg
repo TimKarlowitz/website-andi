@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="800" viewBox="0 0 200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Appalachian Trail from Georgia (bottom) to Maine (top) -->
+  <!-- Simplified path representing the ~2,190 mile trail -->
+  
+  <defs>
+    <style>
+      .trail { fill: none; stroke: #2d5016; stroke-width: 3; stroke-linecap: round; }
+      .marker { fill: #2d5016; }
+    </style>
+  </defs>
+  
+  <!-- Trail path - starts at Georgia (bottom) and goes to Maine (top) -->
+  <path class="trail" d="
+    M 100 780
+    C 105 760, 110 740, 115 720
+    C 120 700, 125 680, 120 660
+    C 115 640, 110 620, 115 600
+    C 120 580, 125 560, 130 540
+    C 135 520, 140 500, 135 480
+    C 130 460, 125 440, 120 420
+    C 115 400, 110 380, 115 360
+    C 120 340, 130 320, 135 300
+    C 140 280, 145 260, 140 240
+    C 135 220, 125 200, 120 180
+    C 115 160, 110 140, 105 120
+    C 100 100, 95 80, 90 60
+    C 85 40, 80 20, 75 10
+  " id="trail-path"/>
+  
+  <!-- State markers -->
+  <circle class="marker" cx="100" cy="780" r="4"/> <!-- Georgia -->
+  <circle class="marker" cx="120" cy="660" r="3"/> <!-- Tennessee/North Carolina -->
+  <circle class="marker" cx="130" cy="540" r="3"/> <!-- Virginia -->
+  <circle class="marker" cx="120" cy="420" r="3"/> <!-- Maryland/Pennsylvania -->
+  <circle class="marker" cx="135" cy="300" r="3"/> <!-- New York -->
+  <circle class="marker" cx="120" cy="180" r="3"/> <!-- Vermont -->
+  <circle class="marker" cx="105" cy="120" r="3"/> <!-- New Hampshire -->
+  <circle class="marker" cx="75" cy="10" r="4"/>  <!-- Maine -->
+</svg>
