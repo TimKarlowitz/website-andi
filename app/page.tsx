@@ -160,9 +160,9 @@ export default function Home() {
         <header className="border-b border-neutral-100">
           <div className="max-w-3xl mx-auto px-6 py-16 lg:py-20">
             <h1 className="text-5xl lg:text-6xl font-light tracking-tight text-neutral-900 mb-3 font-serif">
-              Trail Journal
+              Karlowitz
             </h1>
-            <p className="text-neutral-500 text-lg">{posts.length} entries from the trail</p>
+            <p className="text-neutral-500 text-lg">{posts.length} updates from mostly outside</p>
           </div>
         </header>
 
